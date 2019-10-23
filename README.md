@@ -1,4 +1,4 @@
-# Container for HPC
+# Containers for HPC
 
 GitHub repository for participants of the "Containers for HPC" training.
 For information on the training, see the website
