@@ -4,6 +4,9 @@ How to use Singularity, creating images/containers, and using them.
 
 ## What is it?
 1. `centos_base.def`: Singularity definition file for CentOS 7.6.
+1. `disco_fpc.def`: Singularity definition file that will install the Free
+   Pascal compiler since that is hard to use when not installed using
+   default locations.
 1. `disco_wine.def`: Singularity definition file that will install wine32
    and wine in a Disco Dingo (19.04) Ubunto OS.  
 1. `xenial_gnuplot.def`: Singularity definition file that will install the

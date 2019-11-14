@@ -1,0 +1,6 @@
+BootStrap: docker
+From: ubuntu:disco
+
+%post
+    apt-get update
+    apt-get install -y fpc
