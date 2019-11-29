@@ -8,7 +8,7 @@ How to use Singularity, creating images/containers, and using them.
    Pascal compiler since that is hard to use when not installed using
    default locations.
 1. `disco_wine.def`: Singularity definition file that will install wine32
-   and wine in a Disco Dingo (19.04) Ubunto OS.  
+   and wine64 in a Disco Dingo (19.04) Ubunto OS.  
 1. `xenial_gnuplot.def`: Singularity definition file that will install the
    `gnuplot` application in a Xenial Xerus (16.04) Ubuntu OS.
 1. `xenial_grace.def`: Singularity definition file that will install the
