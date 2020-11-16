@@ -1,6 +1,6 @@
 # hpccm
 
-hpccm (HPC container manager) is a tool developed by NVIDIA to define containers
+hpccm (HPC container maker) is a tool developed by NVIDIA to define containers
 using a Python script that gets translated into a Dockerfile or a Singularity
 recipe.
 
