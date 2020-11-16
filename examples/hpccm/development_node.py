@@ -8,15 +8,14 @@ Usage:
     $ hpccm  --recipe compute_node.py  --format singularity
 '''
 
+from pathlib import Path
+
+
 # Choose a base image
 Stage0.baseimage('ubuntu:20.04')
  
-# Install sudo
-Stage0 += apt_get(ospackages=['sudo'])
-
 # Install build tools
-Stage0 += apt_get(ospackages=['build-essential'])
-Stage0 += apt_get(ospackages=['make', 'cmake'])
+Stage0 += apt_get(ospackages=['build-essential', 'make'])
 Stage0 += cmake(eula=True)
 
 # Install GNU compilers (upstream)
@@ -46,8 +45,9 @@ Stage0 += apt_get(ospackages=['git'])
 Stage0 += apt_get(ospackages=['tar', 'gzip', 'bzip2'])
 
 # Copy in some example code
-source_dir = 'source-code'
+source_dir = Path('source-code')
 example_dir = '/sample_code'
-Stage0 += copy(src=f'{source_dir}/hello_world_f08.f90',
-               dest=f'{example_dir}/',
-               _mkdir=True)
+for file in source_dir.glob('*'):
+    Stage0 += copy(src=f'{file}',
+                   dest=f'{example_dir}/',
+                   _mkdir=True)
