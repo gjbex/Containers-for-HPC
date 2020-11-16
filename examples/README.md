@@ -35,3 +35,5 @@ How to use Singularity, creating images/containers, and using them.
     generated image.
 1. `service`: example of running a Singularity image as an instance
     to provide a server.
+1. `hpccm`: examples of using NVIDIA's hpccm to generate docker files and
+   simgularity defintion files from a single description.
