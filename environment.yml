@@ -1,0 +1,6 @@
+name: containers
+channels:
+  - defaults
+dependencies:
+  - hpccm
+prefix: /home/gjb/miniconda3/envs/containers
