@@ -3,3 +3,6 @@
 *.swp
 *.bak
 ~$singularity.pptx
+
+# direnv config file
+.envrc
