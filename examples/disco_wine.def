@@ -4,6 +4,7 @@ From: ubuntu:disco
 %post
     dpkg --add-architecture i386
     apt-get update
-    apt-get install -y wine32
+    apt-get -y install wine32
     apt-get -y install wine
+    apt-get -y install wine64
     apt-get -y install winetricks
