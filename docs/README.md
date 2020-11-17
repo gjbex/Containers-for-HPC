@@ -36,7 +36,7 @@ Total duration: 3 hours.
 ## Training materials
 
 Slides are available in the
- [GitHub repository](https://github.com/gjbex/Containers-on-HPC/),
+ [GitHub repository](https://github.com/gjbex/Containers-for-HPC/),
 as well as example Singularity definition files.
 
 
