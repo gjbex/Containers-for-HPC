@@ -8,3 +8,6 @@ recipe.
 ## What is it?
 
 1. `development_node`: definition of a development node.
+1. `mssql_client`: defintion of a container with Microsoft
+   SQL Server drivers, ODBC, FreeTDS and a conda environment
+   for a client script.
