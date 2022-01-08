@@ -12,7 +12,7 @@ from pathlib import Path
 
 
 # Choose a base image
-Stage0.baseimage('ubuntu:21.04')
+Stage0.baseimage('ubuntu:21.10')
  
 # Install edtior and other tools
 Stage0 += apt_get(ospackages=['vim', 'less', 'ack', 'tmux', ])
