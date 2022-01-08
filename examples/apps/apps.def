@@ -1,0 +1,34 @@
+Bootstrap: docker
+From: docker.io/python
+
+%labels
+    Maintainer Geert Jan Bex
+    Institute Vlaams Supercomputer Centrum
+
+%files
+    hello.py /bin/hello
+    bye.py   /bin/bye
+
+%post
+    chmod a+rx /bin/hello
+    chmod a+rx /bin/bye
+
+# hello app
+%apprun hello
+    /bin/hello "$@"
+
+%applabels hello
+    BESTAPP HELLO
+
+%apphelp hello
+    say hello
+
+# bye app
+%apprun bye
+    /bin/bye "$@"
+
+%applabels bye
+    BESTAPP BYE
+
+%apphelp bye
+    say bye
