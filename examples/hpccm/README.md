@@ -11,3 +11,4 @@ recipe.
 1. `mssql_client`: defintion of a container with Microsoft
    SQL Server drivers, ODBC, FreeTDS and a conda environment
    for a client script.
+1. `r_container`: definition of an image to run R.
