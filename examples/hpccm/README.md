@@ -7,6 +7,7 @@ recipe.
 
 ## What is it?
 
+1. `simple.py`: very simple example.
 1. `development_node`: definition of a development node.
 1. `mssql_client`: defintion of a container with Microsoft
    SQL Server drivers, ODBC, FreeTDS and a conda environment
