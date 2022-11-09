@@ -14,7 +14,7 @@ from pathlib import Path
 # Choose a base image
 Stage0.baseimage('intel/oneapi-hpckit:latest')
  
-# Install edtior and other tools
+# Install editor and other tools
 Stage0 += apt_get(ospackages=['vim', 'less', 'ack', 'tmux', ])
 
 # Install archive and compression software and utitlies
