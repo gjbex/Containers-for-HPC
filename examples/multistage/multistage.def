@@ -2,6 +2,9 @@ Bootstrap: docker
 From: alpine:3.16.2
 Stage: build
 
+%files
+    src /src
+
 %post
     apk update
     apk add make
@@ -9,9 +12,6 @@ Stage: build
     apk add musl-dev
     cd /src
     make
-
-%files
-    src /src
 
 Bootstrap: docker
 From: alpine:3.16.2

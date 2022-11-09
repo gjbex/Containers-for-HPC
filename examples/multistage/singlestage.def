@@ -1,6 +1,9 @@
 Bootstrap: docker
 From: alpine:3.16.2
 
+%files
+    src /src
+
 %post
     apk update
     apk add make
@@ -9,6 +12,3 @@ From: alpine:3.16.2
     cd /src
     make
     cp hello_world /bin
-
-%files
-    src /src
