@@ -1,0 +1,21 @@
+Bootstrap: docker
+From: alpine:3.16.2
+Stage: build
+
+%files
+    src /src
+
+%post
+    apk update
+    apk add make
+    apk add gcc
+    apk add musl-dev
+    cd /src
+    make
+
+Bootstrap: docker
+From: alpine:3.16.2
+Stage: runtime
+
+%files from build
+    /src/hello_world /bin

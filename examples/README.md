@@ -37,3 +37,6 @@ How to use Singularity, creating images/containers, and using them.
     to provide a server.
 1. `hpccm`: examples of using NVIDIA's hpccm to generate docker files and
    simgularity defintion files from a single description.
+1. `apps`: illustration of defining multiple applications in a single
+   image.
+1. `multistage`: example of a multistage build file.
