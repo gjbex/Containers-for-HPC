@@ -1,14 +1,10 @@
 '''Recipe to create either a docker container or Singularity image
-to perform data processing and rendering for the DSI covid-19
-dashboard.
+for computations using R.
 
 Usage:
-    $ hpccm  --recipe dashboard.py  --format docker
-    $ hpccm  --recipe dashboard.py  --format singularity
+    $ hpccm  --recipe r_container.py  --format docker
+    $ hpccm  --recipe r_container.py  --format singularity
 '''
-
-from pathlib import Path
-
 
 # Choose a base image
 Stage0.baseimage('ubuntu:22.04')
