@@ -1,0 +1,70 @@
+BootStrap: docker
+From: ubuntu:22.04
+%post
+    . /.singularity.d/env/10-docker*.sh
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        gist \
+        rclone \
+        wget
+    rm -rf /var/lib/apt/lists/*
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        build-essential \
+        make
+    rm -rf /var/lib/apt/lists/*
+
+# GNU compiler
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        g++ \
+        gcc \
+        gfortran
+    rm -rf /var/lib/apt/lists/*
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        libcurl4-openssl-dev \
+        libjpeg-dev \
+        libssl-dev \
+        libxml2-dev \
+        libz-dev \
+        openssl
+    rm -rf /var/lib/apt/lists/*
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        liblapack-dev \
+        libopenblas-dev
+    rm -rf /var/lib/apt/lists/*
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        r-base
+    rm -rf /var/lib/apt/lists/*
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        libgdal-dev \
+        libudunits2-dev
+    rm -rf /var/lib/apt/lists/*
+
+%setup
+    mkdir -p ${SINGULARITY_ROOTFS}/setup
+%files
+    install_packages.R /setup/
+
+%post
+    cd /
+    Rscript /setup/install_packages.R
+
+
