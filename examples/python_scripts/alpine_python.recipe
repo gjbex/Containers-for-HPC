@@ -1,0 +1,9 @@
+BootStrap: docker
+From: python:3.11.2-alpine3.16
+
+
+%files
+    test_script.py /bin/test_script.py
+
+%runscript
+    python /bin/test_script.py $@

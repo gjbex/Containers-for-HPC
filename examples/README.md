@@ -39,3 +39,4 @@ How to use Singularity, creating images/containers, and using them.
    simgularity defintion files from a single description.
 1. `apps`: illustration of defining multiple applications in a single
    image.
+1. `python_scripts`: example of a container to run a Python script.
