@@ -40,3 +40,7 @@ How to use Singularity, creating images/containers, and using them.
 1. `apps`: illustration of defining multiple applications in a single
    image.
 1. `python_scripts`: example of a container to run a Python script.
+1. `cuda.recipe`: Recipe for an image that contains NVIDIA's CUDA
+   development tools.  *Note:* this can only be used to run CUDA
+   applications on a host system that has a CPU and has the required
+   drivers installed.

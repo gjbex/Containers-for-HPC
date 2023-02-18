@@ -1,0 +1,9 @@
+BootStrap: docker
+From: nvcr.io/nvidia/cuda:11.4.0-devel-ubi8
+
+%post
+    yum install -y vim
+    yum install -y less
+
+%runscript
+    /bin/bash
