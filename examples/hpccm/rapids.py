@@ -4,27 +4,23 @@ The SQS queue system is available as well as a number of editors, git,
 make, CMake, GCC and Open-MPI
 
 Usage:
-    $ hpccm  --recipe development_intel.py  --format docker
-    $ hpccm  --recipe development_intel.py  --format singularity
+    $ hpccm  --recipe rapids.py  --format docker
+    $ hpccm  --recipe rapids.py  --format singularity
 '''
 
 from pathlib import Path
 
-
 # Choose a base image
-Stage0.baseimage('intel/oneapi-hpckit:latest')
+Stage0.baseimage('nvcr.io/nvidia/rapidsai/rapidsai:cuda11.2-runtime-centos7-py3.10')
  
 # Install editor and other tools
-Stage0 += apt_get(ospackages=['vim', 'less', 'ack', 'tmux', ])
+Stage0 += packages(ospackages=['vim', 'less', 'ack', 'tmux'])
 
 # Install archive and compression software and utitlies
-Stage0 += apt_get(ospackages=['tar', 'gzip', 'bzip2', 'wget', 'ca-certificates', ])
+Stage0 += packages(ospackages=['tar', 'gzip', 'bzip2', 'wget', 'ca-certificates', ])
 
 # Install version control
-Stage0 += apt_get(ospackages=['git', 'openssh-client', ])
-
-# Install debugging tools
-Stage0 += apt_get(ospackages=['valgrind', 'strace', ])
+Stage0 += packages(ospackages=['git', 'openssh-client', ])
 
 # add run script, i.e., start bash
 Stage0 += runscript(commands=['/bin/bash'])

@@ -44,3 +44,4 @@ How to use apptainer, creating images/containers, and using them.
    development tools.  *Note:* this can only be used to run CUDA
    applications on a host system that has a CPU and has the required
    drivers installed.
+1. `multistage`: example of a multistage build file.

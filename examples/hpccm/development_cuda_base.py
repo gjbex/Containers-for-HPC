@@ -4,16 +4,18 @@ The SQS queue system is available as well as a number of editors, git,
 make, CMake, GCC and Open-MPI
 
 Usage:
-    $ hpccm  --recipe development_intel.py  --format docker
-    $ hpccm  --recipe development_intel.py  --format singularity
+    $ hpccm  --recipe development_cuda.py  --format docker
+    $ hpccm  --recipe development_cuda.py  --format singularity
 '''
 
 from pathlib import Path
 
-
 # Choose a base image
-Stage0.baseimage('intel/oneapi-hpckit:latest')
+Stage0.baseimage('nvcr.io/nvidia/nvhpc:23.1-devel-cuda_multi-ubuntu20.04')
  
+# Install CMake
+Stage0 += cmake(eula=True)
+
 # Install editor and other tools
 Stage0 += apt_get(ospackages=['vim', 'less', 'ack', 'tmux', ])
 
