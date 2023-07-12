@@ -10,7 +10,7 @@ Usage:
 from pathlib import Path
 
 # Choose a base image
-Stage0.baseimage('nvcr.io/nvidia/nvhpc:22.3-devel-cuda11.6-ubuntu20.04')
+Stage0.baseimage('nvcr.io/nvidia/nvhpc:23.5-devel-cuda_multi-ubuntu22.04')
  
 # Install CMake
 Stage0 += cmake(eula=True)
