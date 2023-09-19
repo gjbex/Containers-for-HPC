@@ -44,6 +44,8 @@ Stage0 += compilers
 # Install debugging tools
 Stage0 += apt_get(ospackages=['gdb', 'valgrind', 'strace', ])
 
+# Install benchmarking tools
+Stage0 += apt_get(ospackages['hyperfine'])
 
 # Copy in some example code
 # source_dir = Path('source-code')
