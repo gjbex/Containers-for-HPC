@@ -1,6 +1,7 @@
 name: containers
 channels:
   - defaults
+  - conda-forge
 dependencies:
   - hpccm
-prefix: /home/gjb/miniconda3/envs/containers
+prefix: /home/gjb/mambaforge/envs/containers

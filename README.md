@@ -7,8 +7,8 @@ For information on the training, see the website
 
 ## What is it?
 
-1. [`singularity.pptx`](singularity.pptx): PowerPoint presentation used for
-   the training.
+1. [`containers_for_hpc.pptx`](containers_for_hpc.pptx): PowerPoint presentation
+   used for the training.
 1. [`examples`](examples): directory that contains examples of use cases.
 1. [License](LICENSE): license information for the material in this repository.
 1. [Contributing](CONTRIBUTING.md): information on how to contribute to this

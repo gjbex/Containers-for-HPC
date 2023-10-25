@@ -17,7 +17,7 @@ To generate a docker file:
 $ hpccm  --recipe development_node.py  --format docker  > Dockerfile
 ```
 
-To generate a Singularity recipe:
+To generate a Singularity/apptainer recipe:
 ```bash
 $ hpccm  --recipe development_node.py  --format singularity  > development_node.def
 ```
