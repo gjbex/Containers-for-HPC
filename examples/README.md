@@ -45,3 +45,5 @@ How to use apptainer, creating images/containers, and using them.
    applications on a host system that has a CPU and has the required
    drivers installed.
 1. `multistage`: example of a multistage build file.
+1. `conda`: example of a multistage build of an image with a conda
+   environment.
