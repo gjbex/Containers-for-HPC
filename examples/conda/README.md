@@ -10,3 +10,5 @@ environment.
    build of an image that contains a conda environment.
 1. `environment.yml`: conda environment description containing
    numpy.
+1. `Dockerfile`: corresponding Docker file for the Apptainer/Singularity
+   recipe.
