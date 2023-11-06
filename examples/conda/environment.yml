@@ -1,0 +1,6 @@
+name: two_stage_conda
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+prefix: /home/gjb/mambaforge/envs/two_stage_conda

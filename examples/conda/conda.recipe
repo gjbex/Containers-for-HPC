@@ -1,0 +1,51 @@
+# NOTE: this definition file depends on features only available in
+# Singularity 3.2 and later.
+BootStrap: docker
+From: continuumio/miniconda3:4.10.3-alpine
+Stage: build
+%post
+    . /.singularity.d/env/10-docker*.sh
+
+%post
+    cd /
+    conda install -c conda-forge conda-pack
+
+%files
+    environment.yml /environment.yml
+
+%post
+    cd /
+    conda env create -n env -f environment.yml
+
+%post
+    cd /
+    conda pack -n env -o env.tar.gz
+
+BootStrap: docker
+From:  debian:bullseye-slim
+Stage: runtime
+
+%post
+    . /.singularity.d/env/10-docker*.sh
+
+%files from build
+    /env.tar.gz /env.tar.gz
+
+%post
+    cd /
+    mkdir /env
+    cd /env
+    tar xzf /env.tar.gz
+
+%post
+    cd /
+    rm -rv /env.tar.gz
+
+%post
+    cd /
+    /env/bin/python /env/bin/conda-unpack
+
+%environment
+    export PATH=/env/bin/:$PATH
+%post
+    export PATH=/env/bin/:$PATH

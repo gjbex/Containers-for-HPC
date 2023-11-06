@@ -67,4 +67,14 @@ From: ubuntu:22.04
     cd /
     Rscript /setup/install_packages.R
 
+%environment
+    export LC_ALL=C.UTF-8
+%post
+    export LC_ALL=C.UTF-8
+
+%environment
+    export TZ=Europe/Brussels
+%post
+    export TZ=Europe/Brussels
+
 

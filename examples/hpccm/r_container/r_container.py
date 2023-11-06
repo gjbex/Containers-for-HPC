@@ -34,3 +34,7 @@ Stage0 += apt_get(ospackages=['libgdal-dev', 'libudunits2-dev'])
 # Install R packages
 Stage0 += copy(src='install_packages.R', dest='/setup/', _mkdir=True)
 Stage0 += shell(commands=['Rscript /setup/install_packages.R'])
+
+# Set environment variables
+Stage0 += environment(variables={'LC_ALL': 'C.UTF-8'})
+Stage0 += environment(variables={'TZ': 'Europe/Brussels'})
