@@ -4,9 +4,8 @@
 # through Lawrence Berkeley National Laboratory (subject to receipt of any
 # required approvals from the U.S. Dept. of Energy).  All rights reserved.
 
-BootStrap: debootstrap
-OSVersion: xenial
-MirrorURL: http://us.archive.ubuntu.com/ubuntu/
+BootStrap: docker
+From: ubuntu:22.04
 
 
 %runscript
@@ -14,7 +13,5 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 
 %post
-    echo "Hello from inside the container"
-    sed -i 's/$/ universe/' /etc/apt/sources.list
-    apt-get update
-    apt-get -y install grace
+    apt update
+    apt -y install grace
