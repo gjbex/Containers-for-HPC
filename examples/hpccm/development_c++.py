@@ -28,7 +28,7 @@ Stage0 += apt_get(ospackages=['git', 'openssh-client', ])
 
 # Install build tools
 Stage0 += apt_get(ospackages=['build-essential', 'autotools-dev', 'make', 'pkg-config', ])
-Stage0 += cmake(eula=True)
+Stage0 += cmake(eula=True, prefix='/usr/')
 
 # Install compilers (upstream)
 Stage0 += gnu()
