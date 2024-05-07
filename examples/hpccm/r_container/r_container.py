@@ -12,12 +12,25 @@ Stage0.baseimage('ubuntu:22.04')
 # Install utilities
 Stage0 += apt_get(ospackages=['gist', 'wget', 'rclone', ])
 
+# Install tools to install R
+Stage0 += apt_get(ospackages=['software-properties-common', 'apt-transport-https', 'dirmngr', 'gnupg'])
+
+# Add signature key for CRAN
+Stage0 += shell(commands=['wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc'])
+
+# Add CRAN repository
+Stage0 += shell(commands=['add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"'])
+
 # Install build tools
 Stage0 += apt_get(ospackages=['build-essential', 'make'])
+Stage0 += cmake(eula=True)
 
 # Install GNU compilers (upstream)
 compilers = gnu()
 Stage0 += compilers
+
+# Install HDF5 libraries
+Stage0 += hdf5(configure_opts=['--enable-cxx', '--enable-fortran',])
 
 # Install libraries required to build R
 Stage0 += apt_get(ospackages=['openssl', 'libxml2-dev', 'libcurl4-openssl-dev', 'libz-dev', 'libssl-dev',
