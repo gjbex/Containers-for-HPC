@@ -12,8 +12,16 @@ from pathlib import Path
 
 
 # Choose a base image
-Stage0.baseimage('intel/oneapi-hpckit')
+Stage0.baseimage('intel/hpckit:2024.1.0-devel-ubuntu22.04')
  
+# Install NVIDIA backend
+Stage0 += copy(src='oneapi-for-nvidia-gpus-2024.1.0-cuda-12.0-linux.sh',
+            dest='/')
+Stage0 += shell(commands=['/oneapi-for-nvidia-gpus-2024.1.0-cuda-12.0-linux.sh -y'])
+
+# Install build tools
+Stage0 += cmake(eula=True)
+
 # Install editor and other tools
 Stage0 += apt_get(ospackages=['vim', 'neovim', 'less', 'ack', 'tmux', ])
 
