@@ -11,6 +11,7 @@ recipe.
 1. `development_base.py`: base recipe for a development container.
 1. `development_c++.py`: recipe for a C++ development container.
 1. `development_cuda_base.py`: base recipe for CUDA development.
+1. `development_cuda.py`: recipe for CUDA development.
 1. `development_intel_base.py`: base recipe for development using
    Intel compilers.
 1. `development_node`: definition of a development node.
