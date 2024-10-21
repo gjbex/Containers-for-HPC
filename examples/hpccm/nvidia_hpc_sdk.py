@@ -10,13 +10,13 @@ Usage:
 from pathlib import Path
 
 # Choose a base image
-Stage0.baseimage('nvcr.io/nvidia/nvhpc:24.3-devel-cuda_multi-ubuntu22.04')
+Stage0.baseimage('nvcr.io/nvidia/nvhpc:24.7-devel-cuda_multi-ubuntu22.04')
  
 # Install CMake
 Stage0 += cmake(eula=True)
 
 # Install editor and other tools
-Stage0 += apt_get(ospackages=['vim', 'less', 'ack', 'tmux', ])
+Stage0 += apt_get(ospackages=['vim', 'less', 'ack', ])
 
 # Install archive and compression software and utitlies
 Stage0 += apt_get(ospackages=['tar', 'gzip', 'bzip2', 'wget', 'ca-certificates', ])
