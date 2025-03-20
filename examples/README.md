@@ -47,3 +47,5 @@ How to use apptainer, creating images/containers, and using them.
 1. `multistage`: example of a multistage build file.
 1. `conda`: example of a multistage build of an image with a conda
    environment.
+1. `reproducible_definitions`: example of using a reproducible definition
+   file to build an image.
