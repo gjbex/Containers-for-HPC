@@ -12,7 +12,7 @@ from pathlib import Path
 
 
 # Choose a base image
-Stage0.baseimage('ubuntu:23.10')
+Stage0.baseimage('ubuntu:24.10')
  
 # Install editor and other tools
 Stage0 += apt_get(ospackages=['vim', 'neovim', 'less', 'ack', 'tmux', ])
@@ -52,9 +52,12 @@ Stage0 += apt_get(ospackages=['hyperfine'])
 Stage0 += apt_get(ospackages=['cppcheck', 'clang-tidy', 'catch2', ])
 
 # Install C++ libraries
-Stage0 += boost(version='1.84.0')
+Stage0 += apt_get(ospackages=['libboost-all-dev', ])
 Stage0 += apt_get(ospackages=['libopenblas-openmp-dev', 'liblapack64-dev', 
                               'libarmadillo-dev', 'libeigen3-dev', ])
+
+# Run a bash shell by default
+Stage0 += runscript(commands=['/bin/bash'])
 
 # Copy in some example code
 # source_dir = Path('source-code')
