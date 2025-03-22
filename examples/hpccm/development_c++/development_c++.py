@@ -15,10 +15,18 @@ from pathlib import Path
 Stage0.baseimage('ubuntu:24.10')
  
 # Install editor and other tools
-Stage0 += apt_get(ospackages=['vim', 'neovim', 'less', 'ack', 'tmux', ])
-
-# Install archive and compression software and utitlies
-Stage0 += apt_get(ospackages=['tar', 'gzip', 'bzip2', 'wget', 'ca-certificates', ])
+Stage0 += apt_get(ospackages=[
+    'vim',
+    'neovim',
+    'less',
+    'ack',
+    'tmux',
+    'tar',
+    'gzip',
+    'bzip2',
+    'wget',
+    'ca-certificates',
+])
 
 # Install pip
 Stage0 += apt_get(ospackages=['python3-pip', ])
@@ -27,7 +35,13 @@ Stage0 += apt_get(ospackages=['python3-pip', ])
 Stage0 += apt_get(ospackages=['git', 'openssh-client', ])
 
 # Install build tools
-Stage0 += apt_get(ospackages=['build-essential', 'autotools-dev', 'make', 'pkg-config', ])
+Stage0 += apt_get(ospackages=[
+    'build-essential',
+    'autotools-dev',
+    'make',
+    'pkg-config',
+    'ninja-build',
+])
 Stage0 += cmake(eula=True, prefix='/usr/', version='3.31.6')
 
 # Install compilers (upstream)
@@ -42,19 +56,26 @@ Stage0 += llvm(toolset=True, upstream=True)
 # Fetching form repository is faster
 # Stage0 += apt_get(ospackages=['libopenmpi-dev', 'openmpi-common', 'openmpi-bin'])
 
-# Install debugging tools
-Stage0 += apt_get(ospackages=['gdb', 'valgrind', 'strace', ])
-
-# Install benchmarking tools
-Stage0 += apt_get(ospackages=['hyperfine'])
-
-# Install C++-specific tools
-Stage0 += apt_get(ospackages=['cppcheck', 'clang-tidy', 'catch2', ])
+# Install debugging tools and software engineering tools
+Stage0 += apt_get(ospackages=[
+    'gdb',
+    'valgrind',
+    'strace',
+    'cppcheck',
+    'clang-tidy',
+    'catch2',
+    'doxygen',
+    'hyperfine',
+])
 
 # Install C++ libraries
-Stage0 += apt_get(ospackages=['libboost-all-dev', ])
-Stage0 += apt_get(ospackages=['libopenblas-openmp-dev', 'liblapack64-dev', 
-                              'libarmadillo-dev', 'libeigen3-dev', ])
+Stage0 += apt_get(ospackages=[
+    'libopenblas-openmp-dev',
+    'liblapack64-dev', 
+    'libarmadillo-dev',
+    'libeigen3-dev',
+    'libboost-all-dev',
+])
 
 # Run a bash shell by default
 Stage0 += runscript(commands=['/bin/bash'])
