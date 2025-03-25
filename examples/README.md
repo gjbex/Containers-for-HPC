@@ -22,3 +22,23 @@ How to use apptainer, creating images/containers, and using them.
    environment.
 1. `reproducible_definitions`: example of using a reproducible definition
    file to build an image.
+1. `apptainer_build.slurm`: Slurm script to build an image.
+
+
+## How to use it?
+
+Note that the `apptainer_build.slurm` script will only work on a VSC cluster
+due to the environment variables that are set (`VSC_SCRATCH`).  Also note that
+you need to adapt the script by changing the following options:
+
+* `--account`
+* `--mail-user`
+
+Other options such as `--time` and `--cluster` can be overridden on the
+command line.
+
+To build an image, use the `apptainer` command, e.g.,
+
+```bash
+$ sbatch apptainer_build.slurm my_recipe.recipe
+```
