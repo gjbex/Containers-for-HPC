@@ -15,9 +15,9 @@ from pathlib import Path
 Stage0.baseimage('intel/oneapi-hpckit:latest')
  
 # Install NVIDIA backend
-Stage0 += copy(src='oneapi-for-nvidia-gpus-2025.0.0-cuda-12.0-linux.sh',
-            dest='/')
-Stage0 += shell(commands=['/oneapi-for-nvidia-gpus-2025.0.0-cuda-12.0-linux.sh -y'])
+install_script = 'oneapi-for-nvidia-gpus-2025.1.1-linux.sh'
+Stage0 += copy(src=install_script, dest='/')
+Stage0 += shell(commands=[f'/{install_script} -y'])
 
 # Install build tools
 Stage0 += cmake(eula=True)
