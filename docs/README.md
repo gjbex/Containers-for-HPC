@@ -52,6 +52,13 @@ You will need to be comfortable using Linux and the HPC environment.
 If necessary, attend the appropriate training sessions on those subjects.
 
 
+## Level
+
+* Introductory: 20 %
+* Intermediate: 60 %
+* Advanced: 20 %
+
+
 ## Trainer(s)
 
   * Geert Jan Bex ([geertjan.bex@uhasselt.be](mailto:geertjan.bex@uhasselt.be))
