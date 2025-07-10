@@ -29,6 +29,10 @@ From: ubuntu:22.04
     add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 
 %post
+    cd /
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 51716619E084DAB9
+
+%post
     apt-get update -y
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         build-essential \
@@ -124,6 +128,14 @@ From: ubuntu:22.04
         libudunits2-dev
     rm -rf /var/lib/apt/lists/*
 
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        libfontconfig1-dev \
+        libfribidi-dev \
+        libharfbuzz-dev
+    rm -rf /var/lib/apt/lists/*
+
 %setup
     mkdir -p ${SINGULARITY_ROOTFS}/setup
 %files
@@ -142,5 +154,8 @@ From: ubuntu:22.04
     export TZ=Europe/Brussels
 %post
     export TZ=Europe/Brussels
+
+%runscript
+    exec R "$@"
 
 

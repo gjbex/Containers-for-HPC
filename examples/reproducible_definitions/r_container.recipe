@@ -1,0 +1,118 @@
+BootStrap: docker
+From: ubuntu:22.04
+%post
+    . /.singularity.d/env/10-docker*.sh
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        apt-transport-https=2.4.13 \
+        dirmngr=2.2.27-3ubuntu2.1 \
+        gnupg=2.2.27-3ubuntu2.1 \
+        software-properties-common=0.99.22.9 \
+        wget
+    rm -rf /var/lib/apt/lists/*
+
+%post
+    cd /
+    wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+
+%post
+    cd /
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 51716619E084DAB9
+
+%post
+    cd /
+    add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        build-essential=12.9ubuntu3 \
+        make=4.3-4.1build1
+    rm -rf /var/lib/apt/lists/*
+
+# CMake version 3.22.1
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        make \
+        wget
+    rm -rf /var/lib/apt/lists/*
+%post
+    cd /
+    mkdir -p /var/tmp && wget -q -nc --no-check-certificate -P /var/tmp https://github.com/Kitware/CMake/releases/download/v3.22.1/cmake-3.22.1-linux-x86_64.sh
+    mkdir -p /usr/local
+    /bin/sh /var/tmp/cmake-3.22.1-linux-x86_64.sh --prefix=/usr/local --skip-license
+    rm -rf /var/tmp/cmake-3.22.1-linux-x86_64.sh
+%environment
+    export PATH=/usr/local/bin:$PATH
+%post
+    export PATH=/usr/local/bin:$PATH
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        g++=4:11.2.0-1ubuntu1 \
+        gfortran=4:11.2.0-1ubuntu1
+    rm -rf /var/lib/apt/lists/*
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        libcurl4-openssl-dev=7.81.0-1ubuntu1.20 \
+        libjpeg-dev=8c-2ubuntu10 \
+        libssl-dev=3.0.2-0ubuntu1.19 \
+        libxml2-dev=2.9.13+dfsg-1ubuntu0.6 \
+        libz-dev \
+        openssl=3.0.2-0ubuntu1.19
+    rm -rf /var/lib/apt/lists/*
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        liblapack-dev=3.10.0-2ubuntu1 \
+        libopenblas-dev=0.3.20+ds-1
+    rm -rf /var/lib/apt/lists/*
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        r-base=4.4.3-1.2204.0
+    rm -rf /var/lib/apt/lists/*
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        libfontconfig1-dev=2.13.1-4.2ubuntu5 \
+        libfribidi-dev=1.0.8-2ubuntu3.1 \
+        libgdal-dev=3.4.1+dfsg-1build4 \
+        libharfbuzz-dev=2.7.4-1ubuntu3.2 \
+        libudunits2-dev=2.2.28-3
+    rm -rf /var/lib/apt/lists/*
+
+%setup
+    mkdir -p ${SINGULARITY_ROOTFS}/setup
+%files
+    install_packages.R /setup/
+
+%post
+    cd /
+    Rscript /setup/install_packages.R
+
+%setup
+    mkdir -p ${SINGULARITY_ROOTFS}/workspace
+%files
+    Code-EFSA-main/ /workspace/
+
+%environment
+    export LC_ALL=C.UTF-8
+%post
+    export LC_ALL=C.UTF-8
+
+%environment
+    export TZ=Europe/Brussels
+%post
+    export TZ=Europe/Brussels
+
+
