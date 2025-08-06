@@ -3,26 +3,23 @@
 #SBATCH --time=01:00:00
 #SBATCH --mem=16G
 
+# fail on error, unset variable, or failed pipe
+set -euo pipefail
+
 recipe='
 BootStrap: docker
 From: continuumio/miniconda3:4.10.3-alpine
 Stage: build
+%files
+    {{ environment_file }} /environment.yml
+
 %post
     . /.singularity.d/env/10-docker*.sh
 
 %post
     cd /
     conda install -c conda-forge conda-pack
-
-%files
-    {{ environment_file }} /environment.yml
-
-%post
-    cd /
     conda env create -n env -f environment.yml
-
-%post
-    cd /
     conda pack -n env -o env.tar.gz
 
 BootStrap: docker
@@ -40,32 +37,33 @@ Stage: runtime
     mkdir /env
     cd /env
     tar xzf /env.tar.gz
-
-%post
     cd /
     rm -rv /env.tar.gz
-
-%post
-    cd /
     /env/bin/python /env/bin/conda-unpack
 
 %environment
     export PATH=/env/bin/:$PATH
-%post
-    export PATH=/env/bin/:$PATH
 '
 
 # handle command line arguments
-# * --env <enviroment_file>: name of the environment file to use (required)
+# * --env <environment_file>: name of the environment file to use (required)
 # * --sif <container_file>: name of the container file to create (required)
 # * --help: show a help message and exit
 while [[ $# -gt 0 ]]; do
     case $1 in
         --env)
+            if [[ -z "${2:-}" || "${2:0:1}" == "-" ]]; then
+                echo "Error: Missing value for --env"
+                exit 1
+            fi
             environment_file="$2"
             shift 2
             ;;
         --sif)
+            if [[ -z "${2:-}" || "${2:0:1}" == "-" ]]; then
+                echo "Error: Missing value for --sif"
+                exit 1
+            fi
             container_file="$2"
             shift 2
             ;;
@@ -96,6 +94,19 @@ fi
 if [[ -f "$container_file" ]]; then
     echo "Error: Container file '$container_file' already exists."
     exit 1
+fi
+
+# Only when VSC_SCRATCH is defined do we override Apptainer's tmp/cache dirs;
+# otherwise let Apptainer use its own defaults.
+if [[ -n "$VSC_SCRATCH" ]]; then
+    if [[ ! -d "$VSC_SCRATCH" ]]; then
+        echo "Error: VSC_SCRATCH directory '$VSC_SCRATCH' does not exist."
+        exit 1
+    fi
+    export APPTAINER_TMPDIR="$VSC_SCRATCH/apptainer_tmp"
+    mkdir -p "$APPTAINER_TMPDIR"
+    export APPTAINER_CACHEDIR="$VSC_SCRATCH/apptainer_cache"
+    mkdir -p "$APPTAINER_CACHEDIR"
 fi
 
 # create the container file
