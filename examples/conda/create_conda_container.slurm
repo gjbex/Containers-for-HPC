@@ -58,7 +58,6 @@ Stage: runtime
 # handle command line arguments
 # * --env <enviroment_file>: name of the environment file to use (required)
 # * --sif <container_file>: name of the container file to create (required)
-# * --log <log_file>: name of the log file to write (optional)
 # * --help: show a help message and exit
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -68,10 +67,6 @@ while [[ $# -gt 0 ]]; do
             ;;
         --sif)
             container_file="$2"
-            shift 2
-            ;;
-        --log)
-            log_file="$2"
             shift 2
             ;;
         --help)
@@ -103,12 +98,9 @@ if [[ -f "$container_file" ]]; then
     exit 1
 fi
 
-# if a log file is specified, redirect output to it
-if [[ -n "$log_file" ]]; then
-    log_out=" > $log_file 2>&1"
-else
-    log_out=""
-fi
-
 # create the container file
-apptainer build --fakeroot "$container_file" <(printf '%s' "$recipe") $log_out
+apptainer build \
+    --fakeroot \
+    --build-arg environment_file="$environment_file" \
+    "$container_file" \
+    <(printf '%s' "$recipe")
