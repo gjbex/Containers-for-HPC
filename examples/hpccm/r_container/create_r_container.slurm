@@ -227,7 +227,7 @@ hpccm --recipe <(printf '%s' "$hpccm_recipe") \
     --userarg bootstrap="$bootstrap_method" \
     --userarg baseimage="$base_image" > "$recipe"
 
-# Only when VSC_SCRATCH is defined do we override Apptainer's tmp/cache dirs;
+# Only when VSC_SCRATCH_NODE is defined do we override Apptainer's tmp dirs;
 # otherwise let Apptainer use its own defaults.
 if [[ -n "$VSC_SCRATCH_NODE" ]]; then
     if [[ ! -d "$VSC_SCRATCH_NODE" ]]; then
@@ -237,6 +237,8 @@ if [[ -n "$VSC_SCRATCH_NODE" ]]; then
     export APPTAINER_TMPDIR="$VSC_SCRATCH_NODE/$USER/apptainer_tmp"
     mkdir -p "$APPTAINER_TMPDIR"
 fi
+# Only when VSC_SCRATCH is defined do we override Apptainer's cache dirs;
+# otherwise let Apptainer use its own defaults.
 echo "Using tmp dir: '$APPTAINER_TMPDIR'"
 if [[ -n "$VSC_SCRATCH" ]]; then
     if [[ ! -d "$VSC_SCRATCH" ]]; then
