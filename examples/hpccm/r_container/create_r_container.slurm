@@ -234,7 +234,7 @@ if [[ -n "$VSC_SCRATCH_NODE" ]]; then
         echo "Error: VSC_SCRATCH_NODE directory '$VSC_SCRATCH_NODE' does not exist."
         exit 1
     fi
-    export APPTAINER_TMPDIR="$VSC_SCRATCH_NODE/apptainer_tmp"
+    export APPTAINER_TMPDIR="$VSC_SCRATCH_NODE/$USER/apptainer_tmp"
     mkdir -p "$APPTAINER_TMPDIR"
 fi
 echo "Using tmp dir: '$APPTAINER_TMPDIR'"
