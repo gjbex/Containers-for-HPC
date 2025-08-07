@@ -37,6 +37,9 @@ if bootstrap == "localimage":
 # Choose a base image
 Stage0 += baseimage(image=image, _bootstrap=bootstrap)
  
+# Set permissions of /tmp
+Stage0 += shell(commands=["chmod 1777 /tmp"])
+
 # Install apt packages
 if apt_packages:
     Stage0 += apt_get(ospackages=apt_packages)
@@ -226,16 +229,24 @@ hpccm --recipe <(printf '%s' "$hpccm_recipe") \
 
 # Only when VSC_SCRATCH is defined do we override Apptainer's tmp/cache dirs;
 # otherwise let Apptainer use its own defaults.
+if [[ -n "$VSC_SCRATCH_NODE" ]]; then
+    if [[ ! -d "$VSC_SCRATCH_NODE" ]]; then
+        echo "Error: VSC_SCRATCH_NODE directory '$VSC_SCRATCH_NODE' does not exist."
+        exit 1
+    fi
+    export APPTAINER_TMPDIR="$VSC_SCRATCH_NODE/apptainer_tmp"
+    mkdir -p "$APPTAINER_TMPDIR"
+fi
+echo "Using tmp dir: '$APPTAINER_TMPDIR'"
 if [[ -n "$VSC_SCRATCH" ]]; then
     if [[ ! -d "$VSC_SCRATCH" ]]; then
         echo "Error: VSC_SCRATCH directory '$VSC_SCRATCH' does not exist."
         exit 1
     fi
-    export APPTAINER_TMPDIR="$VSC_SCRATCH/apptainer_tmp"
-    mkdir -p "$APPTAINER_TMPDIR"
     export APPTAINER_CACHEDIR="$VSC_SCRATCH/apptainer_cache"
     mkdir -p "$APPTAINER_CACHEDIR"
 fi
+echo "Using cache dir: '$APPTAINER_CACHEDIR'"
 
 # create the container file
 echo "Building image..."
