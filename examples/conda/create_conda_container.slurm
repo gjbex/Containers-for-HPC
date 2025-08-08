@@ -98,7 +98,7 @@ fi
 
 # Only when VSC_SCRATCH_NODE is defined do we override Apptainer's tmp dirs;
 # otherwise let Apptainer use its own defaults.
-if [[ -n "$VSC_SCRATCH_NODE" ]]; then
+if [[ -n "${VSC_SCRATCH_NODE:-}" ]]; then
     if [[ ! -d "$VSC_SCRATCH_NODE" ]]; then
         echo "Error: VSC_SCRATCH_NODE directory '$VSC_SCRATCH_NODE' does not exist."
         exit 1
@@ -108,7 +108,7 @@ if [[ -n "$VSC_SCRATCH_NODE" ]]; then
 fi
 # Only when VSC_SCRATCH is defined do we override Apptainer's cache dirs;
 # otherwise let Apptainer use its own defaults.
-if [[ -n "$VSC_SCRATCH" ]]; then
+if [[ -n "${VSC_SCRATCH:-}" ]]; then
     if [[ ! -d "$VSC_SCRATCH" ]]; then
         echo "Error: VSC_SCRATCH directory '$VSC_SCRATCH' does not exist."
         exit 1
