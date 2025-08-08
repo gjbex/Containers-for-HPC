@@ -21,4 +21,5 @@ recipe.
 1. `r_container`: definition of an image to run R.
 1. `oneapi`: examples of images containing OneAPI development tools.
 1. `nvidia_hpc_sdk.py`: recipe for development using NVIDA HPC SDK.
-1 `rapids.py`: recipe for an image to run NVIDIA Rapids.
+1. `rapids.py`: recipe for an image to run NVIDIA Rapids.
+1. `multistage`: recipe for a multi-stage build.
