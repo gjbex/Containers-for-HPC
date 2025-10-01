@@ -51,6 +51,12 @@ systems, or reproducibility requirements.
 You will need to be comfortable using Linux and the HPC environment.
 If necessary, attend the appropriate training sessions on those subjects.
 
+To follow along hands-on, you need
+* laptop or desktop with internet access and set up so you can connect to an
+  HPC system;
+* an account on an HPC system (e.g., VSC, CECI, ...);
+* compute credits if that is required to run jobs on the HPC system;
+
 
 ## Level
 
