@@ -9,7 +9,7 @@ recipe.
 
 1. `simple.py`: very simple example.
 1. `development_base.py`: base recipe for a development container.
-1. `development_c++.py`: recipe for a C++ development container.
+1. `development_c++`: recipe for a C++ development container.
 1. `development_cuda_base.py`: base recipe for CUDA development.
 1. `development_cuda.py`: recipe for CUDA development.
 1. `development_intel_base.py`: base recipe for development using
