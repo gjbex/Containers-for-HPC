@@ -47,5 +47,7 @@ Stage: runtime
 
 %environment
     export PATH=/env/bin/:$PATH
+    export PYTHONNOUSERSITE=1
 %post
     export PATH=/env/bin/:$PATH
+    export PYTHONNOUSERSITE=1
