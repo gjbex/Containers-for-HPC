@@ -89,6 +89,8 @@ If several of these items still feel difficult, the training will probably move
 too fast. In that case, it is better to first refresh Linux command-line use
 and basic HPC job handling.
 
+### Software and access requirements
+
 To follow along hands-on, you need
 * laptop or desktop with internet access and set up so you can connect to an
   HPC system;
