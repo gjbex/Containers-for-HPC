@@ -1,0 +1,132 @@
+schema_version = 2
+id = "containers-for-hpc"
+title = "Containers for HPC"
+content_language = "en"
+summary = """
+Apptainer, previously known as Singularity, can be viewed as Docker for HPC: an image can contain the operating system and software components for your application and can be deployed and run on HPC infrastructure, as well as on your own laptop, and even in the cloud. An additional advantage of containers is that they can help you create a software environment that is stable over long periods of time, which helps reproduce results in the future.
+"""
+
+[[learning_outcomes]]
+statement = "Use Apptainer containers on HPC systems."
+competencies = ["containers.run-apptainer-on-hpc"]
+
+[[learning_outcomes]]
+statement = "Create your own definition files for containers."
+competencies = ["containers.write-definition-files"]
+
+[[learning_outcomes]]
+statement = "Understand strengths and weaknesses of containers."
+competencies = ["containers.evaluate-tradeoffs-and-pitfalls"]
+
+[[learning_outcomes]]
+statement = "Recognize and avoid potential pitfalls."
+competencies = ["containers.evaluate-tradeoffs-and-pitfalls"]
+
+[source]
+metadata_document = "docs/README.md"
+repository_url = "https://github.com/gjbex/Containers-for-HPC/"
+website_url = "https://gjbex.github.io/Containers-for-HPC/"
+license = "CC-BY-4.0"
+
+[delivery]
+duration_minutes = 180
+duration_kind = "fixed"
+session_count = 1
+target_session_duration_minutes = 180
+schedule_complete = true
+description = """
+Total duration: 3 hours.
+"""
+
+[audience]
+description = """
+This training is for you if you have non-trivial workflows on HPC systems or reproducibility requirements and want to use containers effectively.
+"""
+
+[prerequisites]
+summary = """
+You should be comfortable using Linux and the HPC environment. If necessary, attend the appropriate training sessions on those subjects first. More concretely, participants should already be comfortable with the following: * logging in to an HPC system and working from the shell; * navigating directories, creating and editing files, and running commands from the command line; * understanding the difference between login nodes and compute nodes; * submitting and monitoring basic batch jobs if image builds or runs need to be done through Slurm; * working with software environments at a user level, for example modules, compilers, or Python environments; * reading and making small changes to short shell scripts. Familiarity with Docker concepts is helpful, but not strictly required. You do not need prior experience with Apptainer or Singularity, container definition files, multi-stage builds, or HPC-oriented container tools such as hpccm. Those are part of the training itself.
+"""
+competencies = ["hpc.log-in-and-use-shell", "hpc.distinguish-login-and-compute-nodes", "slurm.submit-batch-job", "hpc.use-software-environments", "shell.read-and-adapt-scripts"]
+
+[self_assessment]
+introduction = """
+If you can do most of the tasks below without looking up basic Linux or HPC syntax, you are likely ready for this training.
+"""
+tasks = [
+  "Log in to an HPC cluster and move to the directory where your files are stored.",
+  "Edit a short text file or shell script and run a command from that directory.",
+  "Understand where a job should run: on the login node or on a compute node.",
+  "Submit a basic Slurm job and check whether it is queued, running, or finished.",
+  "Read a short shell script and identify the input file, output file, and main command being executed.",
+  "Understand at a high level why packaging software and dependencies together can help reproducibility.",
+  "Make a small change to a recipe or script and rerun it."
+]
+
+[requirements]
+software = [
+  "Laptop or desktop with internet access and set up so you can connect to an HPC system.",
+  "An account on an HPC system (e.g., VSC, CECI, ...).",
+  "Compute credits if that is required to run jobs on the HPC system."
+]
+
+[level]
+introductory_percent = 25
+intermediate_percent = 55
+advanced_percent = 20
+description = """
+For participants who already have basic Linux and HPC experience, the material in this training is approximately These percentages describe the level of the container and reproducibility topics covered in the training, not the required entry level in Linux or HPC usage itself.
+"""
+
+[[materials]]
+kind = "slides"
+path = "containers_for_hpc.pptx"
+
+[[materials]]
+kind = "examples"
+path = "examples"
+
+[[materials]]
+kind = "environment"
+path = "environment.yml"
+
+[[trainers]]
+name = "Geert Jan Bex"
+email = "geertjan.bex@uhasselt.be"
+
+[[maintainers]]
+name = "Geert Jan Bex"
+email = "geertjan.bex@uhasselt.be"
+
+[[sessions]]
+id = "session-1"
+title = "Session one"
+duration_minutes = 180
+
+[[sessions.items]]
+subject = "introduction and motivation"
+duration_minutes = 15
+
+[[sessions.items]]
+subject = "Apptainer definition files"
+duration_minutes = 75
+
+[[sessions.items]]
+subject = "coffee break"
+duration_minutes = 15
+
+[[sessions.items]]
+subject = "Apptainer and parallel applications"
+duration_minutes = 15
+
+[[sessions.items]]
+subject = "Apptainer and services"
+duration_minutes = 20
+
+[[sessions.items]]
+subject = "hands-on"
+duration_minutes = 30
+
+[[sessions.items]]
+subject = "wrap up"
+duration_minutes = 10
